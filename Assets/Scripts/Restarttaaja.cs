@@ -11,7 +11,7 @@ public class Restarttaaja : MonoBehaviour
     private int randomi1;
     private float randomi2;
 
-    List<int> lista = new List<int> { 10,-10,5,-5,2,-2,8,-8,4,-4}; //sivusuunta heitto
+    List<int> lista = new List<int> { 10,-10,5,-5,2,-2,8,-8,4,-4}; // Options for leftside throw
     private int sivul;
     private float pystyl;
     
