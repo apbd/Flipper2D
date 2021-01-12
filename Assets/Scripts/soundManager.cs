@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class soundManager : MonoBehaviour
 {
-    public static AudioClip palloSound, flipperSound, pisteSound, powerupSound;
+    public static AudioClip ballSound, flipperSound, pointSound, powerupSound;
     static AudioSource audioSrc;
     void Start()
     {
-        palloSound = Resources.Load<AudioClip>("pallo");
+        ballSound = Resources.Load<AudioClip>("ball");
         flipperSound = Resources.Load<AudioClip>("flipper");
-        pisteSound = Resources.Load<AudioClip>("piste");
+        pointSound = Resources.Load<AudioClip>("point");
         powerupSound = Resources.Load<AudioClip>("powerup");
 
         audioSrc = GetComponent<AudioSource>();
@@ -21,16 +21,16 @@ public class soundManager : MonoBehaviour
         audioSrc.volume = 1.0f;
         switch (clip)
         {
-            case "pallo":
-                audioSrc.PlayOneShot(palloSound);
+            case "ball":
+                audioSrc.PlayOneShot(ballSound);
                 break;
             case "flipper":
                 audioSrc.volume = 0.3f;
-                audioSrc.PlayOneShot(flipperSound);   //BUGI kun kaikki lyö samaa aikaa ääni tulee 4x
+                audioSrc.PlayOneShot(flipperSound);   // BUG: when everyone uses flipper the sound is 4x
                 break;
-            case "piste":
+            case "point":
                 audioSrc.volume = 10.0f;
-                audioSrc.PlayOneShot(pisteSound);
+                audioSrc.PlayOneShot(pointSound);
                 break;
             case "powerup":
                 audioSrc.PlayOneShot(powerupSound);

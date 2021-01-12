@@ -31,7 +31,7 @@ public class PowerupController : MonoBehaviour
 
 
 
-        if(r1 < 0.0f && BallGravity.freeze == false)
+        if(r1 < 0.0f && BallGravity.ballFreeze == false)
         {
             r1 = Random.Range(4.0f, 20.0f); //kauan kestää powerup spawniin
             r2 = Random.Range(0, 4);        //spawnattavat powerupit 1-4

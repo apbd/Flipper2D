@@ -6,72 +6,61 @@ public class BallGravity : MonoBehaviour {
 
    
     
-    public Rigidbody2D palloRigidBody2d;
-    public Transform palloTransform;
-    public float nopeus = 1.0f;
-    
-    public bool hasPlayed = false;
-    
-    public static bool freeze;
+    public Rigidbody2D ballRigidbody;
+    public Transform ballTransform;
 
-    public float gravitypowerup;
+    public float ballSpeed = 1.0f;
+    public bool soundHasPlayer = false;
+    public static bool ballFreeze;
+    public float gravityPowerup;
 
-    //RESPAWNIN
-    private int randomi1;
-    private float randomi2;
 
-    List<int> sivulista = new List<int> { 10, -10, 5, -5, 2, -2, 8, -8, 4, -4 }; //sivusuunta heitto
-    private int sivul;
-    private float pystyl;
+    List<int> throwOptions = new List<int> { 10, -10, 5, -5, 2, -2, 8, -8, 4, -4 };      // Options for which side ball is thrown (so it doesnt get thrown at 90 degrees to the wall)
+    private int horizontalThrow;
+    private float verticalThrow;
 
-    public TrailRenderer whitetrail, blacktrail;
+    public TrailRenderer whiteBallTrail, blackBallTrail;
 
-    //special ball
+    // special ball 
     private GameObject ball;
-    public bool lastLife = false;
+    public bool lastSpecialBall = false;
 
     
 
     void Start()
     {
-        gravitypowerup = 1.0f;
-        palloTransform = GetComponent<Transform>();
-        palloRigidBody2d = GetComponent<Rigidbody2D>();
-        whitetrail = GetComponent<TrailRenderer>();
+        gravityPowerup = 1.0f;
+        ballTransform = GetComponent<Transform>();
+        ballRigidbody = GetComponent<Rigidbody2D>();
+        whiteBallTrail = GetComponent<TrailRenderer>();
       
-        blacktrail = this.transform.Find("trails/pallotrailblack").GetComponent<TrailRenderer>();
+        blackBallTrail = this.transform.Find("trails/black_ball_trail").GetComponent<TrailRenderer>();
 
         ball = this.gameObject;
         if (ball.name.Contains("SpecialBall"))
         {
-            
             StartCoroutine(BallReset());
         }
     }
 
     void FixedUpdate()
     {
+        horizontalThrow = throwOptions[Random.Range(0, 7)];  // horizontal throw every round
+        ballRigidbody.velocity *= ballSpeed;
 
-        randomi1 = Random.Range(0, 7); //sivul
-        sivul = sivulista[randomi1];
-
-        palloRigidBody2d.velocity *= nopeus;
-
-        if (freeze == true)
+        if (ballFreeze == true)
         {
-            palloRigidBody2d.Sleep();
+            ballRigidbody.Sleep();
         }
         else
         {
-            palloRigidBody2d.WakeUp();
+            ballRigidbody.WakeUp();
         }
     }
 
     void Awake()
     {
-        randomi2 = Random.Range(-10.0f, 5.0f); //ylös alas heitto
-        pystyl = randomi2;
-
+        verticalThrow = Random.Range(-10.0f, 5.0f); // vertical throw at match start
     }
 
     void OnTriggerStay2D(Collider2D other)
@@ -79,27 +68,27 @@ public class BallGravity : MonoBehaviour {
         
         if (other.gameObject.name == "ylä")
         {
-            palloRigidBody2d.gravityScale = -1.0f  * gravitypowerup;
+            ballRigidbody.gravityScale = -1.0f  * gravityPowerup;
         }
 
         if (other.gameObject.name == "ala")
         {
-            palloRigidBody2d.gravityScale = 1.0f * gravitypowerup;
+            ballRigidbody.gravityScale = 1.0f * gravityPowerup;
         }
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (!hasPlayed)
+        if (!soundHasPlayer)
         {
-            soundManager.PlaySound("pallo");
-            hasPlayed = true;
+            soundManager.PlaySound("ball");
+            soundHasPlayer = true;
         }
     }
 
     void OnCollisionExit2D(Collision2D other)
     {
-        hasPlayed = false;
+        soundHasPlayer = false;
 
     }
 
@@ -108,31 +97,27 @@ public class BallGravity : MonoBehaviour {
     {
         if (other.CompareTag("Goal"))
         {
-
-           
-
-
             //which side continues
 
             if (other.gameObject.name == "UpperRespawn")
             {
-                pystyl = 3.0f;
+                verticalThrow = 3.0f;
             }
 
             if (other.gameObject.name == "LowerRespawn")
             {
-                pystyl = -3.0f;
+                verticalThrow = -3.0f;
             }
 
-            //for special balls 
-            if (lastLife == true)
+            // if special ball is last, destroy
+            if (lastSpecialBall == true)
             {
                 Destroy(this.gameObject);
             }
             else
             {
-                palloTransform.transform.position = new Vector2(0, 0);
-                other.GetComponent<Restarttaaja>().psystem.Play();
+                ballTransform.transform.position = new Vector2(0, 0);
+                other.GetComponent<BallRestarter>().ballSpawntParticles.Play();
                 //reset ball after 0.3f because trails
                 StartCoroutine(BallReset());
             }
@@ -141,9 +126,9 @@ public class BallGravity : MonoBehaviour {
     IEnumerator BallReset()
     {
         Debug.Log("Goal!!");
-        palloRigidBody2d.Sleep();
-         blacktrail.Clear();
-         whitetrail.Clear();
+        ballRigidbody.Sleep();
+         blackBallTrail.Clear();
+         whiteBallTrail.Clear();
 
         yield return new WaitForSeconds(0.3f);
         //GameObject.FindGameObjectWithTag("Ball").GetComponent<BallGravity>().ResetBall();
@@ -152,18 +137,18 @@ public class BallGravity : MonoBehaviour {
         Debug.Log("Ball restartted.");
         
         //pallotrans.transform.position = new Vector2(0, 0);
-        palloRigidBody2d.velocity = new Vector2(sivul, pystyl);
+        ballRigidbody.velocity = new Vector2(horizontalThrow, verticalThrow);
         //blacktrail.emitting = true;   //ei toimi dunno
     }
 
     public Rigidbody2D getRigidbody()
     {
-        return (palloRigidBody2d);
+        return (ballRigidbody);
     }
 
-    public void BallLastlife(bool t)
+    public void BallLastlife(bool last)
     {
-        this.lastLife = t;
-        Debug.Log(lastLife);
+        this.lastSpecialBall = last;
+        Debug.Log(lastSpecialBall);
     }
 }
