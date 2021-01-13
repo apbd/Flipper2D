@@ -9,31 +9,26 @@ public class MainMenu : MonoBehaviour
 {
     public enum GameType { solo, local, online}
     public static GameType gametype;
+    public float musicOn;
+
     public Text goalamount;
     public AudioMixer audioMixer;
-
     public Dropdown resolutionDropdown;
-
     Resolution[] resolutions;
-   public float musicOn;
-
     public Toggle swapToggle;
 
 
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);
-        Time.timeScale = 1.5f;  //toinen on powerupActionsisa
+        Time.timeScale = 1.5f;  //another one in powerupAction script
+        ScoreManager.maxGoals = 10;
+        List<string> options = new List<string>();
 
         ToggleMusic(false);
-        Score.goal = 10;
         goalamount.text = "10";
-
         resolutions = Screen.resolutions;
-
         resolutionDropdown.ClearOptions();
-
-        List<string> options = new List<string>();
 
         int currentResolutionIndex = 0;
         for (int i = 0; i < resolutions.Length; i++)
@@ -74,7 +69,7 @@ public class MainMenu : MonoBehaviour
     }
 
 
-    //GOAL
+    // GOAL limit picker
     public void GoalSlider(float goal)
     {
 
@@ -82,7 +77,7 @@ public class MainMenu : MonoBehaviour
 
         goalamount.text = goal.ToString();
 
-        Score.goal = Mathf.RoundToInt(goal);
+        ScoreManager.maxGoals = Mathf.RoundToInt(goal);
     }
 
     //INVERTED AND SWAP
@@ -96,7 +91,7 @@ public class MainMenu : MonoBehaviour
     {
 
         P2FlipperMover.swapped = swap;
-        FlipperMover.swapped = swap;
+        P1FlipperMover.swapped = swap;
 
     }
     //VOLUME
@@ -107,7 +102,6 @@ public class MainMenu : MonoBehaviour
     }
 
     //MUSIC
-
     public void ToggleMusic (bool music)
     {
         if(music == true)

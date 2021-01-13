@@ -6,34 +6,19 @@ using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
-    public static bool GameIsPaused = false;
+    public static bool gameIsPaused = false;
 
-    public GameObject pausemenuUI;
-    public MainMenu mainMenuObjectinScript;
+    public GameObject pauseMenuUI;
+    public MainMenu mainMenuScript;
 
     public Toggle swapToggle;
 
-    void Start()
-    {
-        /*
-        if (mainMenuObjectinScript.swapToggle.isOn)
-        {
-            Debug.Log("onopööö");
-            swapToggle.isOn = true;
-        }
-        //etsii mainmenussa olevan mainmenuscriptin
-        mainMenuObjectinScript = GameObject.Find("MainMenuController").GetComponent<MainMenu>(); ;
-        Debug.Log("what" + mainMenuObjectinScript.goalamount);
-       */
-    }
+
     void Update()
     {
-        
-
-
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (GameIsPaused)
+            if (gameIsPaused)
             {
                 Resume();
             }
@@ -42,36 +27,32 @@ public class PauseMenu : MonoBehaviour
                 Pause();
             }
         }
-
-
     }
 
     //INVERTED AND SWAP
     public void IsInverted(bool invert)
     {
-
         P2FlipperMover.inverted = invert;
-
     }
     public void SwapControls(bool swap)
     {
 
         P2FlipperMover.swapped = swap;
-        FlipperMover.swapped = swap;
+        P1FlipperMover.swapped = swap;
 
     }
 
     public void Resume()
     {
-        pausemenuUI.SetActive(false);
+        pauseMenuUI.SetActive(false);
         Time.timeScale = 1.5f;
-        GameIsPaused = false;
+        gameIsPaused = false;
     }
     void Pause() 
     {
-        pausemenuUI.SetActive(true);
+        pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
-        GameIsPaused = true;
+        gameIsPaused = true;
     }
 
 
@@ -79,7 +60,7 @@ public class PauseMenu : MonoBehaviour
     public void LoadMenu()
     {
 
-        //tuhoaa dontdestroyonload objetin jottei tuu duplicateja
+        // destroys dontdestroyonload object so theres no duplicates
         // Destroy(mainMenuObjectinScript.gameObject);
         SceneManager.LoadScene(0);
     }

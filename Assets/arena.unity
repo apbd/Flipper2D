@@ -1647,7 +1647,7 @@ RectTransform:
   - {fileID: 1027374299}
   - {fileID: 922060758}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6814,7 +6814,7 @@ Transform:
   - {fileID: 1300592563}
   - {fileID: 1573303386}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &410623553
 GameObject:
@@ -7056,10 +7056,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96551a700eafaf44a94f9f4d7847b29d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicOn: 0
   goalamount: {fileID: 0}
   audioMixer: {fileID: 24100000, guid: 9e1d5a3588c05f14287b840d80a9a77a, type: 2}
   resolutionDropdown: {fileID: 844076384}
-  musicOn: 0
   swapToggle: {fileID: 0}
 --- !u!4 &446065401
 Transform:
@@ -7261,11 +7261,11 @@ Transform:
   m_LocalScale: {x: 0.15412195, y: 0.16012111, z: 1}
   m_Children:
   - {fileID: 1658615782}
-  - {fileID: 1044799949}
   - {fileID: 2013625255}
+  - {fileID: 1044799949}
   - {fileID: 1281224960}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &515371378
 GameObject:
@@ -7979,7 +7979,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &644793329
 GameObject:
@@ -8270,7 +8270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0.47320843, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -9811,7 +9811,7 @@ Transform:
   - {fileID: 1974551255}
   - {fileID: 1394595989}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &834423959
 GameObject:
@@ -9828,7 +9828,7 @@ GameObject:
   - component: {fileID: 834423966}
   - component: {fileID: 834423965}
   m_Layer: 0
-  m_Name: flipperL
+  m_Name: P1FlipperL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9981,9 +9981,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 650
-  suunta: 0
-  suunta2: 0
-  inputName: LFlipper
+  flipperDown: 0
+  flipperUp: 0
+  inputName: P1FlipperL
   swapPlayerLetter: P2
 --- !u!233 &834423965
 HingeJoint2D:
@@ -10348,7 +10348,7 @@ GameObject:
   - component: {fileID: 903745262}
   - component: {fileID: 903745264}
   m_Layer: 5
-  m_Name: SCORE + ScoreScript
+  m_Name: ScoreManger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10424,15 +10424,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 903745260}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ea059292db4e49469e3f46cc2a5e023, type: 3}
+  m_Script: {fileID: 11500000, guid: f90578146735d4a4abfd56dec2b3b66b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText2: {fileID: 903605780}
-  scoreText1: {fileID: 90880431}
-  p1wins: {fileID: 2103385745}
-  p2wins: {fileID: 450270559}
+  scoreTextP2: {fileID: 903605780}
+  scoreTextP1: {fileID: 90880431}
+  P1WinText: {fileID: 2103385745}
+  P2WinText: {fileID: 450270559}
   goalLimitText: {fileID: 1635397500}
-  render: {fileID: 88444098}
+  arenaSpriteRenderer: {fileID: 88444098}
 --- !u!1 &905766185
 GameObject:
   m_ObjectHideFlags: 0
@@ -11164,12 +11164,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1027374299}
   m_Layer: 5
-  m_Name: ControlsChars
+  m_Name: ControlsAsChars
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1027374299
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11206,12 +11206,12 @@ GameObject:
   - component: {fileID: 1044799953}
   - component: {fileID: 1044799951}
   - component: {fileID: 1044799950}
-  - component: {fileID: 1044799955}
   - component: {fileID: 1044799956}
   - component: {fileID: 1044799952}
   - component: {fileID: 1044799957}
+  - component: {fileID: 1044799958}
   m_Layer: 0
-  m_Name: 2flipperL_name
+  m_Name: P2FlipperL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11230,7 +11230,7 @@ Transform:
   m_Children:
   - {fileID: 718710569}
   m_Father: {fileID: 511426487}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!233 &1044799950
 HingeJoint2D:
@@ -11290,8 +11290,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 750
-  suunta: 0
-  suunta2: 0
+  flipperDown: 0
+  flipperUp: 0
   inputName: P2LFlipper
   swapPlayerLetter: P2
 --- !u!60 &1044799953
@@ -11413,22 +11413,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1044799955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1044799948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dc10f00dba183c4ea6b87cdd50977bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 750
-  suunta: 0
-  suunta2: 0
-  inputName: 2LFlipper
 --- !u!61 &1044799956
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11467,6 +11451,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93e5f0cb5cda0c439f047241eeb0354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1044799958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044799948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac89b5558b8cee44790280dea2c87d4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 750
+  flipperDown: 1
+  flipperUp: -1
+  inputName: P2FlipperL
 --- !u!1 &1067430851
 GameObject:
   m_ObjectHideFlags: 0
@@ -12910,7 +12910,7 @@ GameObject:
   - component: {fileID: 1281224962}
   - component: {fileID: 1281224961}
   m_Layer: 0
-  m_Name: R1
+  m_Name: L1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18529,7 +18529,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0.4745098, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -19009,12 +19009,12 @@ GameObject:
   - component: {fileID: 1658615786}
   - component: {fileID: 1658615784}
   - component: {fileID: 1658615783}
-  - component: {fileID: 1658615788}
   - component: {fileID: 1658615789}
   - component: {fileID: 1658615785}
   - component: {fileID: 1658615790}
+  - component: {fileID: 1658615791}
   m_Layer: 0
-  m_Name: 2flipperR_name
+  m_Name: P2FlipperR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19093,8 +19093,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 750
-  suunta: 0
-  suunta2: 0
+  flipperDown: 0
+  flipperUp: 0
   inputName: P2RFlipper
   swapPlayerLetter: P2
 --- !u!60 &1658615786
@@ -19221,22 +19221,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1658615788
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1658615781}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dc10f00dba183c4ea6b87cdd50977bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 750
-  suunta: 0
-  suunta2: 0
-  inputName: 2RFlipper
 --- !u!61 &1658615789
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19275,6 +19259,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93e5f0cb5cda0c439f047241eeb0354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1658615791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658615781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac89b5558b8cee44790280dea2c87d4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 750
+  flipperDown: 1
+  flipperUp: -1
+  inputName: P2FlipperR
 --- !u!1 &1692323823
 GameObject:
   m_ObjectHideFlags: 0
@@ -19760,7 +19760,7 @@ GameObject:
   - component: {fileID: 1718767084}
   - component: {fileID: 1718767083}
   m_Layer: 0
-  m_Name: flipperR
+  m_Name: P1FlipperR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19899,9 +19899,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 650
-  suunta: 0
-  suunta2: 0
-  inputName: RFlipper
+  flipperDown: 0
+  flipperUp: 0
+  inputName: P1FlipperR
   swapPlayerLetter: P2
 --- !u!212 &1718767086
 SpriteRenderer:
@@ -26846,7 +26846,7 @@ GameObject:
   - component: {fileID: 2013625257}
   - component: {fileID: 2013625256}
   m_Layer: 0
-  m_Name: L1
+  m_Name: R1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26864,7 +26864,7 @@ Transform:
   m_LocalScale: {x: 6.488369, y: 6.2452726, z: 1}
   m_Children: []
   m_Father: {fileID: 511426487}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2013625256
 MonoBehaviour:
@@ -27325,7 +27325,7 @@ Transform:
   - {fileID: 863857695}
   - {fileID: 1241172597}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2132555416
 GameObject:

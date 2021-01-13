@@ -58,8 +58,8 @@ public class ShowControls : MonoBehaviour
                 ballRigidbody.Sleep();
 
 
-                if (Input.GetAxis("P2RFlipper") == 1 && Input.GetAxis("P2LFlipper") == 1 &&  // Player 2 ready
-                    Input.GetAxis("RFlipper") == 1 && Input.GetAxis("LFlipper") == 1)        // Player 1 ready
+                if (Input.GetAxis("P2FlipperR") == 1 && Input.GetAxis("P2FlipperL") == 1 &&  // Player 2 ready
+                    Input.GetAxis("P1FlipperR") == 1 && Input.GetAxis("P1FlipperL") == 1)        // Player 1 ready
                 {
                     BallGravity.ballFreeze = false;
                     ballRigidbody.WakeUp();

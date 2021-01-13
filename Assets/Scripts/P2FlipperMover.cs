@@ -7,14 +7,13 @@ public class P2FlipperMover : MonoBehaviour
     public float speed = 750f;
     private HingeJoint2D myHingeJoint;
     private JointMotor2D motor2D;
-    public int suunta;
-    public int suunta2;
+    public int flipperDown;
+    public int flipperUp;
     public string inputName;
-
 
     public static bool inverted = false;
     
-    private bool hasPlayed = false;
+    private bool _soundHasPlayed = false;
 
 
     private string swapLetterR2 = "R";
@@ -24,23 +23,15 @@ public class P2FlipperMover : MonoBehaviour
 
     void Start()
     {
-
-  
-
         myHingeJoint = GetComponent<HingeJoint2D>();
         motor2D = myHingeJoint.motor;
-        System.Console.WriteLine("Input.GetAxis(inputName)");
-
-
-
-            
-        
     }
    
 
     void FixedUpdate()
     {
 
+        // inverted just switches string values
         if (inverted)
         {
             swapLetterR2 = "L";
@@ -52,74 +43,47 @@ public class P2FlipperMover : MonoBehaviour
             swapLetterL2 = "L";
         }
 
+        // changes string value
         if (swapped)
         {
-            swapPlayerLetter = "";
-          
+            swapPlayerLetter = "P1";
         }
         else
         {
             swapPlayerLetter = "P2";
         }
 
-        //inverted vaihtaa vain muuttujat ristiin
 
-        if (gameObject.name == "2flipperR_name")  //huom R //katsoo mikä objecti on kyseessä
+        if (gameObject.name == "P2FlipperR")  
             {
-                inputName = swapPlayerLetter + swapLetterR2 + "Flipper"; //huom L
-                suunta = -1;            //vaihtaa flipperien suunnan oikeaksi
-                suunta2 = 1;
+                inputName = swapPlayerLetter + "Flipper" + swapLetterR2 ; 
+                flipperDown = -1;          
+                flipperUp = 1;
             }
-            if (gameObject.name == "2flipperL_name")
+            if (gameObject.name == "P2FlipperL")
             {
-                inputName = swapPlayerLetter + swapLetterL2 + "Flipper";
-                suunta = 1;
-                suunta2 = -1;  //<- ovat jo ristissä vaikkei siltä näytä
-            } /*
-        }
-
-        else
-        {
-            if (gameObject.name == "2flipperR" + swapLetterR2) //huom R //katsoo mikä objecti on kyseessä
-            {
-
-                inputName = "P2RFlipper";    //huom R
-                suunta = -1;              //vaihtaa flipperien suunnan oikeaksi
-                suunta2 = 1;
-            }
-            if (gameObject.name == "2flipperL" + swapLetterL2)
-            {
-                inputName = "P2LFlipper";
-                suunta = 1;
-                suunta2 = -1;
-            }
-
-        }
-        */
+                inputName = swapPlayerLetter + "Flipper" + swapLetterL2;
+                flipperDown = 1;
+                flipperUp = -1;
+            } 
 
 
-
-        //saa inputnamen ja katsoo mikä nimi inputissa on ja ottaa siitä inputin 
         if (Input.GetAxis(inputName) == 1)
         {
-
-            motor2D.motorSpeed = suunta2 * speed;
+            motor2D.motorSpeed = flipperUp * speed;
             myHingeJoint.motor = motor2D;
-            if (!hasPlayed)
+            if (!_soundHasPlayed)
             {
                 SoundManager.PlaySound("flipper");
-                hasPlayed = true;
+                _soundHasPlayed = true;
             }
-
         }
         else
         {
-
-            motor2D.motorSpeed = suunta * speed;
+            motor2D.motorSpeed = flipperDown * speed;
             myHingeJoint.motor = motor2D;
            
-            hasPlayed = false;
+            _soundHasPlayed = false;
         }
-
     }
 }

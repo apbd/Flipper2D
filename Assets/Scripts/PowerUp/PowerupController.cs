@@ -123,7 +123,6 @@ public class PowerupController : MonoBehaviour
         powerupBehaviour.SetPowerup(powerup);
 
       
-
         powerupGameObject.transform.position = position;
         powerupGameObject.transform.localScale = scale;
 

@@ -11,32 +11,26 @@ public class PowerupBehaviour : MonoBehaviour
 
     private Powerup powerup;
 
-    private SpriteRenderer spriterenderer;
+    private SpriteRenderer spriteRenderer;
 
-    public ParticleSystem pasystem; //tarvitaan powerupeille psystem komponentti plaplapla
-
-    private Transform transform_;
+    public ParticleSystem powerupParticleSys;  //powerups need particlesystem component etc
 
     public Animator animator;
 
     private void Awake()
     {
-        
-        transform_ = transform;
-        //ottaa objetin spriterenderin haltuun
-        spriterenderer = GetComponent<SpriteRenderer>();
+        // takes spriterender of powerup
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         
-        if (other.gameObject.tag == "Ball") //pallo törmää 
+        if (other.gameObject.tag == "Ball") // ball collision with powerup
         {
             SoundManager.PlaySound("powerup");
             ActivatePowerup();
             gameObject.SetActive(false);
-
-
         }
     }
 
@@ -49,7 +43,7 @@ public class PowerupBehaviour : MonoBehaviour
     {
         this.powerup = powerup;
         gameObject.name = powerup.name;
-        //laittaa haltuunotettuun spriterenderiin spriten joka on tullut powerupin mukana joka on laitettu powerupcontrollerissa
-        spriterenderer.sprite = powerup.sprite;
+        // assign powerup object's renderer a sprite that can be changed in powerupcontroller
+        spriteRenderer.sprite = powerup.sprite;
     }
 }

@@ -14,8 +14,8 @@ public class BallGravity : MonoBehaviour {
     public static bool ballFreeze;
     public float gravityPowerup;
 
-
-    List<int> throwOptions = new List<int> { 10, -10, 5, -5, 2, -2, 8, -8, 4, -4 };      // Options for which side ball is thrown (so it doesnt get thrown at 90 degrees to the wall)
+    // Options for which side ball is thrown (so it doesnt get thrown at 90 degrees to the wall)
+    List<int> throwOptions = new List<int> { 10, -10, 5, -5, 2, -2, 8, -8, 4, -4 };      
     private int _horizontalThrow;
     private float _verticalThrow;
 

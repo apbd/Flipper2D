@@ -6,9 +6,6 @@ public class BallRestarter : MonoBehaviour
 {
     public Rigidbody2D ballRigidbody;
     private BallGravity ballGravity;
-
-
-    
     public ParticleSystem ballSpawntParticleSys;
 
 
@@ -17,12 +14,10 @@ public class BallRestarter : MonoBehaviour
     // ELI SIIRRÄ KAIKKI PALLOON LIITTYVÄT BALLGRAVITYYN JA PIDÄ PISTEET ÄÄNET YMS TÄSSÄ.
     
 
-
-
     void Start()
     {
         ballGravity = GameObject.FindGameObjectWithTag("Ball").GetComponent<BallGravity>();    // get ball gravity component from scene
-        ballRigidbody = ballGravity.getRigidbody();   // use ball gravity objects rigidbody
+        ballRigidbody = ballGravity.getRigidbody();                                             // use ball gravity object's rigidbody
         ballSpawntParticleSys = GameObject.Find("ParticleSystems/RespawnParticleSys").GetComponent<ParticleSystem>();
     }   
 
@@ -33,12 +28,12 @@ public class BallRestarter : MonoBehaviour
         { 
             if (gameObject.name == "UpperGoal")
             {
-                Score.p2 += 1;
+                ScoreManager.ScoreP1 += 1;
             }
 
             if (gameObject.name == "LowerGoal")
             {
-                Score.p1 += 1;
+                ScoreManager.ScoreP2 += 1;
             }
 
             SoundManager.PlaySound("point");

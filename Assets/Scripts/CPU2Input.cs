@@ -4,44 +4,38 @@ using UnityEngine;
 
 public class CPU2Input : MonoBehaviour
 {
-
     void OnTriggerStay2D(Collider2D other)
     {
+        // if ball hits trigger zone
         if (other.CompareTag("Ball"))
-
         {
+            // if that zone is R1
             if(gameObject.name == "R1")
             {
-                //Debug.Log(gameObject.name);
-                CPU2.activate = "2LFlipper";
+                Debug.Log(gameObject.name);
+                CPUFlipperMover.activate = "P2FlipperR";
             }
             else
             {
-                CPU2.activate = "2RFlipper";
-                //Debug.Log(gameObject.name);
+                CPUFlipperMover.activate = "P2FlipperL";
             }
-            
-
         }
-
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
+        // whebn ball leaves zone, put flippers down
         if (other.CompareTag("Ball"))
 
         {
             if (gameObject.name == "R1")
             {
-                CPU2.activate = "Still";
+                CPUFlipperMover.activate = "Still";
             }
             else
             {
-                CPU2.activate = "Still";
+                CPUFlipperMover.activate = "Still";
             }
-
         }
-        
-
     }
 }
