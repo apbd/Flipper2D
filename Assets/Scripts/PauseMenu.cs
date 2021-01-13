@@ -9,7 +9,6 @@ public class PauseMenu : MonoBehaviour
     public static bool gameIsPaused = false;
 
     public GameObject pauseMenuUI;
-    public MainMenu mainMenuScript;
 
     public Toggle swapToggle;
 

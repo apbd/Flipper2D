@@ -42,7 +42,7 @@ public class ScoreManager : MonoBehaviour
             }
             else
             {
-                if (ScoreP1 < ScoreP2)
+                if (ScoreP1 > ScoreP2)
                 {
                     arenaSpriteRenderer.color = Color.blue;
                 }
@@ -57,12 +57,12 @@ public class ScoreManager : MonoBehaviour
 
             if (ScoreP2 == maxGoals)
             {
-                P1WinText.enabled = true;
+                P2WinText.enabled = true;
                 gameOver = true;
             }
             if (ScoreP1 == maxGoals)
             {
-                P2WinText.enabled = true;
+                P1WinText.enabled = true;
                 gameOver = true;
             }
         }

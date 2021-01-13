@@ -9253,8 +9253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd35b1062ece3684294c1097b224cc87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pausemenuUI: {fileID: 1931090601}
-  mainMenuObjectinScript: {fileID: 0}
+  pauseMenuUI: {fileID: 1931090601}
   swapToggle: {fileID: 78371427}
 --- !u!1 &779030361
 GameObject:

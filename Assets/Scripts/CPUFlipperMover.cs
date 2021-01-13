@@ -11,7 +11,6 @@ public class CPUFlipperMover : MonoBehaviour
     public int flipperUp;
     public string inputName;
 
-
     public static string activate;
     
     private bool _soundHasPlayed = true;
