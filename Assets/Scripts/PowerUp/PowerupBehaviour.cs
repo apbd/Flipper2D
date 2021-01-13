@@ -32,7 +32,7 @@ public class PowerupBehaviour : MonoBehaviour
         
         if (other.gameObject.tag == "Ball") //pallo törmää 
         {
-            soundManager.PlaySound("powerup");
+            SoundManager.PlaySound("powerup");
             ActivatePowerup();
             gameObject.SetActive(false);
 

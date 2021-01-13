@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class soundManager : MonoBehaviour
+public class SoundManager : MonoBehaviour
 {
     public static AudioClip ballSound, flipperSound, pointSound, powerupSound;
-    static AudioSource audioSrc;
+    static AudioSource audioSource;
     void Start()
     {
         ballSound = Resources.Load<AudioClip>("ball");
@@ -13,27 +13,27 @@ public class soundManager : MonoBehaviour
         pointSound = Resources.Load<AudioClip>("point");
         powerupSound = Resources.Load<AudioClip>("powerup");
 
-        audioSrc = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
     }
     
     public static void PlaySound (string clip)
     {
-        audioSrc.volume = 1.0f;
+        audioSource.volume = 1.0f;
         switch (clip)
         {
             case "ball":
-                audioSrc.PlayOneShot(ballSound);
+                audioSource.PlayOneShot(ballSound);
                 break;
             case "flipper":
-                audioSrc.volume = 0.3f;
-                audioSrc.PlayOneShot(flipperSound);   // BUG: when everyone uses flipper the sound is 4x
+                audioSource.volume = 0.3f;
+                audioSource.PlayOneShot(flipperSound);   // BUG: when everyone uses flipper the sound is 4x
                 break;
             case "point":
-                audioSrc.volume = 10.0f;
-                audioSrc.PlayOneShot(pointSound);
+                audioSource.volume = 10.0f;
+                audioSource.PlayOneShot(pointSound);
                 break;
             case "powerup":
-                audioSrc.PlayOneShot(powerupSound);
+                audioSource.PlayOneShot(powerupSound);
                 break;
 
         }

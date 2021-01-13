@@ -12,63 +12,53 @@ public class PowerupController : MonoBehaviour
 
     private List<Powerup> keys = new List<Powerup>();
 
-    
 
-    private float r1;
-    private int r2;
-    private float r3x;
-    private float r4y;
+    private float _randomPowerupSpawnDuration;
+    private int _randomPowerupSpawn;
+    private float _randomCoordX;
+    private float _randomCoordY;
 
-    private float r5s;
-    
-
+    private float _randomPowerupSize;
   
     public Text powerupTimerSpeed, powerupTimerBig, powerupTimerPower, powerupTimerGravity;
 
     void Update() 
     {
-        HandleActivePowerups();  //kuuluu alkaa kun painaa menussa start
+        HandleActivePowerups();  //needs to be called when pressing start in menu
 
 
 
-        if(r1 < 0.0f && BallGravity.ballFreeze == false)
+        if(_randomPowerupSpawnDuration < 0.0f && BallGravity.ballFreeze == false)
         {
-            r1 = Random.Range(4.0f, 20.0f); //kauan kestää powerup spawniin
-            r2 = Random.Range(0, 4);        //spawnattavat powerupit 1-4
-            r3x = Random.Range(-4.0f, 4.0f); //spawnaus koord x
-            r4y = Random.Range(-4.0f, 4.0f); //spawnaus koord y
+            _randomPowerupSpawnDuration = Random.Range(4.0f, 20.0f);    // how long for powerup spawn
+            _randomPowerupSpawn = Random.Range(0, 4);                   // which powerup spawns 1-4
+            _randomCoordX = Random.Range(-4.0f, 4.0f);                  // spawning coordinate x
+            _randomCoordY = Random.Range(-4.0f, 4.0f);                  // spawnining coord y
 
 
-            r5s = Random.Range(0.08f, 0.25f); //powerup koko, EI TOIMI ANIMAATION TAKIA!
+            _randomPowerupSize = Random.Range(0.08f, 0.25f);   // powerup size, BUG: doesnt work cause of animation!
             
 
-            SpawnPowerup(powerups[r2], new Vector2(r3x, r4y), new Vector3(r5s, r5s, 0.0f));
-
-         //   Debug.Log(r2);
-
+            SpawnPowerup(powerups[_randomPowerupSpawn], new Vector2(_randomCoordX, _randomCoordY), new Vector3(_randomPowerupSize, _randomPowerupSize, 0.0f));
         }
-
-        
-        r1 -= Time.deltaTime;     
+        // reduces duration as time goes on and gains more time when it reaches 0
+        _randomPowerupSpawnDuration -= Time.deltaTime;
     }
 
     public void HandleActivePowerups() 
     {
         bool changed = false;
-        if (activePowerups.Count > 0) //onko uusia poweruppeja tullut
+        if (activePowerups.Count > 0)    // Are there new powerups?
         {
-            
-           
-            foreach (Powerup powerup in keys) //katsoo kaikki activoidut powerupit
+            foreach (Powerup powerup in keys)   // looks at all the activated powerups
             {
-                //Debug.Log(powerup.name); //activated powerup name
-                if (activePowerups[powerup] > 0) //jos activoituja poweruppeja on enemmän kuin 0
+                //Debug.Log(powerup.name);   // activated powerup name
+                if (activePowerups[powerup] > 0)    // if there are activated powerups
                 {
+                    activePowerups[powerup] -= Time.deltaTime / 1.5f;   //  time is divided by 1.5 because timescale is 1.5
 
-                    
-                    activePowerups[powerup] -= Time.deltaTime / 1.5f;   //aika jaetaan kahdella koska timescale MONIKERTAINe
-                    
-                    if (powerup.name == "HighSpeed") //laittaa ajan oikeaan poweruppiin
+                    // displays durations of the correct powerups as text in scene
+                    if (powerup.name == "HighSpeed") 
                     {
                         powerupTimerSpeed.text = Mathf.RoundToInt(activePowerups[powerup]).ToString();
                     }
@@ -94,6 +84,7 @@ public class PowerupController : MonoBehaviour
             }
         }
 
+        // if something changed make new list that has key of every active powerup
         if (changed)
         {
             keys = new List<Powerup>(activePowerups.Keys);
@@ -102,21 +93,24 @@ public class PowerupController : MonoBehaviour
 
     public void ActivatePowerup(Powerup powerup)
     {
+        // if activepowerups dic doesnt have key of powerup, start powerup and add it
         if (!activePowerups.ContainsKey(powerup))
         {
             powerup.Start();
             activePowerups.Add(powerup, powerup.duration);
         }
+        // else add more duration to the existing one
         else
         {
             activePowerups[powerup] += powerup.duration;
         }
 
+        // make new list that has key of every active powerup
         keys = new List<Powerup>(activePowerups.Keys);
     }
 
 
-    //antaa powerupille ominaisuudet  ja palauttaa powerupin gameobjectina
+    // gives powerup features and returns it as object
     public GameObject SpawnPowerup(Powerup powerup, Vector2 position, Vector3 scale)
     {
         GameObject powerupGameObject = Instantiate(powerupPrefab);

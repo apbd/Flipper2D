@@ -9,7 +9,7 @@ public class BallRestarter : MonoBehaviour
 
 
     
-    public ParticleSystem ballSpawntParticles;
+    public ParticleSystem ballSpawntParticleSys;
 
 
     // rambling:
@@ -21,8 +21,9 @@ public class BallRestarter : MonoBehaviour
 
     void Start()
     {
-        ballGravity = GameObject.FindGameObjectWithTag("Ball").GetComponent<BallGravity>();    //get ball gravity component from scene
+        ballGravity = GameObject.FindGameObjectWithTag("Ball").GetComponent<BallGravity>();    // get ball gravity component from scene
         ballRigidbody = ballGravity.getRigidbody();   // use ball gravity objects rigidbody
+        ballSpawntParticleSys = GameObject.Find("ParticleSystems/RespawnParticleSys").GetComponent<ParticleSystem>();
     }   
 
 
@@ -30,18 +31,18 @@ public class BallRestarter : MonoBehaviour
     {
         if (other.CompareTag("Ball")) 
         { 
-            if (gameObject.name == "UpperRespawn")
+            if (gameObject.name == "UpperGoal")
             {
                 Score.p2 += 1;
             }
 
-            if (gameObject.name == "LowerRespawn")
+            if (gameObject.name == "LowerGoal")
             {
                 Score.p1 += 1;
             }
 
-            soundManager.PlaySound("point");
-            soundManager.PlaySound("point");
+            SoundManager.PlaySound("point");
+            SoundManager.PlaySound("point");
         }
     }
     

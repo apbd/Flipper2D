@@ -7,37 +7,40 @@ public class PowerupActions : MonoBehaviour
 
     [SerializeField]
 
-    public Rigidbody2D pallo;
+    public Rigidbody2D ballRigidbody;
 
-    public BallGravity ballgravity;
-    public GameObject[] ballgravitys;
+    public BallGravity ballGravity;
+    public GameObject[] ballGravitiesList;
 
-    public TrailRenderer whitetrail;
+    public TrailRenderer whiteBallTrail;
     public GameObject specialBall;
 
-    public ParticleSystem ParSysExtra;
+    public ParticleSystem specialBallParticleSys;
 
     
 
     private void Start()
     {
-        Time.timeScale = 1.5f; //global timescale
+        // global timescale
+        Time.timeScale = 1.5f; 
         
-        pallo = GameObject.FindGameObjectWithTag("Ball").GetComponent<BallGravity>().getRigidbody();
-        whitetrail = GameObject.FindGameObjectWithTag("Ball").GetComponent<BallGravity>().whiteBallTrail;
+        ballRigidbody = GameObject.FindGameObjectWithTag("Ball").GetComponent<BallGravity>().getRigidbody();
+        whiteBallTrail = GameObject.FindGameObjectWithTag("Ball").GetComponent<BallGravity>().whiteBallTrail;
+        specialBallParticleSys = GameObject.Find("ParticleSystems/SpecialSpawnParticleSys").GetComponent<ParticleSystem>();
+
     }
     private void FixedUpdate()
     {
-        ballgravitys = GameObject.FindGameObjectsWithTag("Ball");
+        ballGravitiesList = GameObject.FindGameObjectsWithTag("Ball");
         
     }
     public void HighSpeedStartAction()
     {
 
-        //powerupit ei toimi koska scripti voi hoitaa vaan yhen kerrallaa 
-        //-> pitäis tehä sammalaine ku powerup dictionary systeemi
+        // script allows only one powerup per time
+        //-> need to make powerup dictionary system if its needed
 
-        foreach(GameObject obj in ballgravitys)
+        foreach(GameObject obj in ballGravitiesList)
         {
             obj.GetComponent<BallGravity>().ballSpeed = 1.04f;
             obj.GetComponent<BallGravity>().whiteBallTrail.startColor = Color.yellow;
@@ -49,7 +52,7 @@ public class PowerupActions : MonoBehaviour
 
     public void HighSpeedEndAction()
     {
-        foreach (GameObject obj in ballgravitys)
+        foreach (GameObject obj in ballGravitiesList)
         {
             if(obj.name.Contains("SpecialBall"))
             {
@@ -68,29 +71,29 @@ public class PowerupActions : MonoBehaviour
 
     public void BigBallStartAction()
     {
-        ballgravity.transform.localScale = new Vector3(0.09f, 0.09f, 0);
-        HoldC.pallonrigid.mass = 100.0f;
-        whitetrail.startWidth = 1.0f;
+        ballGravity.transform.localScale = new Vector3(0.09f, 0.09f, 0);
+        ShowControls.ballRigidbody.mass = 100.0f;
+        whiteBallTrail.startWidth = 1.0f;
     }
 
     public void BigBallEndAction()
     {
         //Debug.Log("poweruploppu");
-        ballgravity.transform.localScale = new Vector3(0.05f, 0.05f, 0);
-        HoldC.pallonrigid.mass = 0.7f;
-        whitetrail.startWidth = 0.5f;
+        ballGravity.transform.localScale = new Vector3(0.05f, 0.05f, 0);
+        ShowControls.ballRigidbody.mass = 0.7f;
+        whiteBallTrail.startWidth = 0.5f;
     }
 
     public void ExtraStartAction()
     {
-        ParSysExtra.Play();
+        specialBallParticleSys.Play();
         Instantiate(specialBall, new Vector2(0, 0), Quaternion.identity);
     }
 
     public void ExtraEndAction()
     {
         
-        foreach (GameObject obj in ballgravitys)
+        foreach (GameObject obj in ballGravitiesList)
         {
             if (obj.name.Contains("SpecialBall"))
             {
@@ -102,13 +105,13 @@ public class PowerupActions : MonoBehaviour
     public void GravityStartAction()
     {
         
-        ballgravity.gravityPowerup = 0.001f;
+        ballGravity.gravityPowerup = 0.001f;
         Debug.Log("gravity activoitu");
     }
 
     public void GravityEndAction()
     {
         //Debug.Log("poweruploppu");
-        ballgravity.gravityPowerup = 1.0f;
+        ballGravity.gravityPowerup = 1.0f;
     }
 }

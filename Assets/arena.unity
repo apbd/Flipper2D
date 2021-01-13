@@ -315,14 +315,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d510608146a80a4d853f87e3d2dfc2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  palloRigidBody2d: {fileID: 0}
-  palloTransform: {fileID: 0}
-  nopeus: 1
-  hasPlayed: 1
-  gravitypowerup: 0
-  whitetrail: {fileID: 0}
-  blacktrail: {fileID: 0}
-  lastLife: 0
+  ballRigidbody: {fileID: 0}
+  ballTransform: {fileID: 0}
+  ballSpeed: 1
+  soundHasPlayed: 0
+  gravityPowerup: 0
+  whiteBallTrail: {fileID: 0}
+  blackBallTrail: {fileID: 0}
+  lastSpecialBall: 0
 --- !u!50 &49979383
 Rigidbody2D:
   serializedVersion: 4
@@ -693,7 +693,7 @@ GameObject:
   - component: {fileID: 88444101}
   - component: {fileID: 88444100}
   m_Layer: 0
-  m_Name: arena
+  m_Name: ArenaSpriteAndColliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1425,7 +1425,7 @@ GameObject:
   - component: {fileID: 253120995}
   - component: {fileID: 253120996}
   m_Layer: 0
-  m_Name: katto
+  m_Name: TopBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1483,7 +1483,7 @@ GameObject:
   - component: {fileID: 262668435}
   - component: {fileID: 262668434}
   m_Layer: 5
-  m_Name: HoldDownControlsText
+  m_Name: HoldDownControlsDarkText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1666,7 +1666,7 @@ GameObject:
   - component: {fileID: 315871886}
   - component: {fileID: 315871885}
   m_Layer: 5
-  m_Name: RespawnParticleS
+  m_Name: RespawnParticleSys
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6794,7 +6794,7 @@ GameObject:
   m_Component:
   - component: {fileID: 378668709}
   m_Layer: 0
-  m_Name: Pisteet (Restarttaaja)
+  m_Name: Goals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7073,7 +7073,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &450270557
 GameObject:
@@ -7279,7 +7279,7 @@ GameObject:
   - component: {fileID: 515371379}
   - component: {fileID: 1866845471}
   m_Layer: 0
-  m_Name: pallotrailwhite
+  m_Name: white_ball_trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9141,51 +9141,6 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 0
---- !u!1 &761510815
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 761510816}
-  - component: {fileID: 761510817}
-  m_Layer: 0
-  m_Name: BallController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &761510816
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 761510815}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.7361653, y: -0.007852331, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &761510817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 761510815}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42a3939c20f6f584ca5044af9c0c3803, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pallorigid: {fileID: 0}
-  prefab: {fileID: 3037785629479458211, guid: 25e70e47d8894f443b2eca399de44b37, type: 3}
 --- !u!1 &763665821
 GameObject:
   m_ObjectHideFlags: 0
@@ -9279,7 +9234,7 @@ RectTransform:
   m_Children:
   - {fileID: 1931090602}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -9544,7 +9499,7 @@ GameObject:
   - component: {fileID: 799011573}
   - component: {fileID: 799011575}
   m_Layer: 0
-  m_Name: pohja
+  m_Name: BottomBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10235,7 +10190,7 @@ GameObject:
   - component: {fileID: 863857697}
   - component: {fileID: 863857696}
   m_Layer: 0
-  m_Name: "yl\xE4"
+  m_Name: UpperZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10293,14 +10248,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d510608146a80a4d853f87e3d2dfc2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  palloRigidBody2d: {fileID: 0}
-  palloTransform: {fileID: 0}
-  nopeus: 20
-  hasPlayed: 1
-  gravitypowerup: 0
-  whitetrail: {fileID: 0}
-  blacktrail: {fileID: 0}
-  lastLife: 0
+  ballRigidbody: {fileID: 0}
+  ballTransform: {fileID: 0}
+  ballSpeed: 1
+  soundHasPlayed: 0
+  gravityPowerup: 0
+  whiteBallTrail: {fileID: 0}
+  blackBallTrail: {fileID: 0}
+  lastSpecialBall: 0
 --- !u!1 &903605777
 GameObject:
   m_ObjectHideFlags: 0
@@ -10627,11 +10582,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e9b0fd5eb5c2fc489338ee78f71aa8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdcontrols: {fileID: 262668434}
-  holdcontrolsred: {fileID: 1093842844}
-  controls: {fileID: 1027374298}
-  holdc: {fileID: 922060756}
-  palloite: {fileID: 922060755}
+  holdControlsTextDark: {fileID: 0}
+  holdControlsTextRed: {fileID: 0}
+  holdCText: {fileID: 0}
+  controlsAsChars: {fileID: 0}
+  ball: {fileID: 0}
 --- !u!1 &925788951
 GameObject:
   m_ObjectHideFlags: 0
@@ -10988,7 +10943,7 @@ GameObject:
   - component: {fileID: 21447385}
   - component: {fileID: 973996198}
   m_Layer: 0
-  m_Name: pallo
+  m_Name: Ball
   m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11209,7 +11164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1027374299}
   m_Layer: 5
-  m_Name: Controls
+  m_Name: ControlsChars
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11603,7 +11558,7 @@ GameObject:
   - component: {fileID: 1093842845}
   - component: {fileID: 1093842844}
   m_Layer: 5
-  m_Name: red text
+  m_Name: HoldDownControlsRedText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11680,7 +11635,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1094038773}
   m_Layer: 0
-  m_Name: suppilo (1)
+  m_Name: FunnelP2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12366,7 +12321,7 @@ GameObject:
   - component: {fileID: 1241172599}
   - component: {fileID: 1241172598}
   m_Layer: 0
-  m_Name: ala
+  m_Name: LowerZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12424,14 +12379,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d510608146a80a4d853f87e3d2dfc2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  palloRigidBody2d: {fileID: 0}
-  palloTransform: {fileID: 0}
-  nopeus: 20
-  hasPlayed: 1
-  gravitypowerup: 0
-  whitetrail: {fileID: 0}
-  blacktrail: {fileID: 0}
-  lastLife: 0
+  ballRigidbody: {fileID: 0}
+  ballTransform: {fileID: 0}
+  ballSpeed: 1
+  soundHasPlayed: 0
+  gravityPowerup: 0
+  whiteBallTrail: {fileID: 0}
+  blackBallTrail: {fileID: 0}
+  lastSpecialBall: 0
 --- !u!1 &1241216356
 GameObject:
   m_ObjectHideFlags: 0
@@ -12785,13 +12740,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30e09ffef557eed4a8004d80ef20d36b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pallo: {fileID: 49979383}
-  ballgravity: {fileID: 21447385}
-  ballgravitys: []
-  whitetrail: {fileID: 1866845471}
-  specialBall: {fileID: 5556642364914336139, guid: 90d532d03afd15945a30fbc1b42469e1,
+  ballRigidbody: {fileID: 0}
+  ballGravity: {fileID: 21447385}
+  ballGravitiesList: []
+  whiteBallTrail: {fileID: 0}
+  specialBall: {fileID: 5423325895830007214, guid: 90d532d03afd15945a30fbc1b42469e1,
     type: 3}
-  ParSysExtra: {fileID: 1974551257}
+  specialBallParticleSys: {fileID: 0}
 --- !u!1 &1257552320
 GameObject:
   m_ObjectHideFlags: 0
@@ -13025,7 +12980,7 @@ GameObject:
   - component: {fileID: 1300592565}
   - component: {fileID: 1300592564}
   m_Layer: 0
-  m_Name: UpperRespawn
+  m_Name: UpperGoal
   m_TagString: Goal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13057,8 +13012,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a7e971a75d2f64c9f6a5848904baba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pallrigid: {fileID: 0}
-  psystem: {fileID: 315871886}
+  ballRigidbody: {fileID: 0}
+  ballSpawntParticleSys: {fileID: 0}
 --- !u!61 &1300592565
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13096,7 +13051,7 @@ GameObject:
   - component: {fileID: 1303518837}
   - component: {fileID: 1303518838}
   m_Layer: 0
-  m_Name: music
+  m_Name: Music
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13339,7 +13294,7 @@ GameObject:
   - component: {fileID: 1394595991}
   - component: {fileID: 1394595990}
   m_Layer: 5
-  m_Name: powerupactivate
+  m_Name: PowerupActivated
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18615,7 +18570,7 @@ GameObject:
   - component: {fileID: 1562811580}
   - component: {fileID: 1562811579}
   m_Layer: 0
-  m_Name: soundManager
+  m_Name: SoundManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18757,7 +18712,7 @@ GameObject:
   - component: {fileID: 1573303387}
   - component: {fileID: 1573303388}
   m_Layer: 0
-  m_Name: LowerRespawn
+  m_Name: LowerGoal
   m_TagString: Goal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18815,8 +18770,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a7e971a75d2f64c9f6a5848904baba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pallrigid: {fileID: 0}
-  psystem: {fileID: 315871886}
+  ballRigidbody: {fileID: 0}
+  ballSpawntParticleSys: {fileID: 0}
 --- !u!1 &1610460143
 GameObject:
   m_ObjectHideFlags: 0
@@ -19563,7 +19518,7 @@ GameObject:
   - component: {fileID: 1703585548}
   - component: {fileID: 1703585549}
   m_Layer: 0
-  m_Name: borders
+  m_Name: ArenaSpriteTopLayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21692,7 +21647,7 @@ GameObject:
   - component: {fileID: 1946038077}
   - component: {fileID: 2089947891}
   m_Layer: 0
-  m_Name: pallotrailblack
+  m_Name: black_ball_trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21834,7 +21789,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1967420704}
   m_Layer: 0
-  m_Name: suppilo
+  m_Name: FunnelP1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21946,7 +21901,7 @@ GameObject:
   - component: {fileID: 1974551257}
   - component: {fileID: 1974551256}
   m_Layer: 5
-  m_Name: SpecialSpawnParticleS
+  m_Name: SpecialSpawnParticleSys
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26852,7 +26807,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2012154182}
   m_Layer: 0
-  m_Name: arena
+  m_Name: Arena
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27304,7 +27259,7 @@ GameObject:
   - component: {fileID: 2131106713}
   - component: {fileID: 2131106714}
   m_Layer: 0
-  m_Name: middle
+  m_Name: PlayerZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27322,14 +27277,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d510608146a80a4d853f87e3d2dfc2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  palloRigidBody2d: {fileID: 0}
-  palloTransform: {fileID: 0}
-  nopeus: 20
-  hasPlayed: 1
-  gravitypowerup: 0
-  whitetrail: {fileID: 0}
-  blacktrail: {fileID: 0}
-  lastLife: 0
+  ballRigidbody: {fileID: 0}
+  ballTransform: {fileID: 0}
+  ballSpeed: 1
+  soundHasPlayed: 0
+  gravityPowerup: 0
+  whiteBallTrail: {fileID: 0}
+  blackBallTrail: {fileID: 0}
+  lastSpecialBall: 0
 --- !u!61 &2131106714
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27552,6 +27507,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3037785627943208776, guid: 25e70e47d8894f443b2eca399de44b37,
+        type: 3}
+      propertyPath: m_Name
+      value: white_ball_trail
+      objectReference: {fileID: 0}
     - target: {fileID: 3037785629479458211, guid: 25e70e47d8894f443b2eca399de44b37,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -27610,7 +27570,7 @@ PrefabInstance:
     - target: {fileID: 3037785629479458214, guid: 25e70e47d8894f443b2eca399de44b37,
         type: 3}
       propertyPath: m_Name
-      value: pallo
+      value: Ball
       objectReference: {fileID: 0}
     - target: {fileID: 3037785629479458214, guid: 25e70e47d8894f443b2eca399de44b37,
         type: 3}
@@ -27622,76 +27582,81 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3037785628231096484, guid: 25e70e47d8894f443b2eca399de44b37,
+        type: 3}
+      propertyPath: m_Name
+      value: black_ball_trail
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25e70e47d8894f443b2eca399de44b37, type: 3}
---- !u!1001 &5556642364243906744
+--- !u!1001 &5423325897145522607
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5556642364914336139, guid: 90d532d03afd15945a30fbc1b42469e1,
+    - target: {fileID: 5423325895830007214, guid: 90d532d03afd15945a30fbc1b42469e1,
         type: 3}
       propertyPath: m_Name
       value: SpecialBall
       objectReference: {fileID: 0}
-    - target: {fileID: 5556642364914336139, guid: 90d532d03afd15945a30fbc1b42469e1,
+    - target: {fileID: 5423325895830007214, guid: 90d532d03afd15945a30fbc1b42469e1,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5556642364914336129, guid: 90d532d03afd15945a30fbc1b42469e1,
+    - target: {fileID: 5423325895830007207, guid: 90d532d03afd15945a30fbc1b42469e1,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.84
       objectReference: {fileID: 0}
-    - target: {fileID: 5556642364914336129, guid: 90d532d03afd15945a30fbc1b42469e1,
+    - target: {fileID: 5423325895830007207, guid: 90d532d03afd15945a30fbc1b42469e1,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.179
       objectReference: {fileID: 0}
-    - target: {fileID: 5556642364914336129, guid: 90d532d03afd15945a30fbc1b42469e1,
+    - target: {fileID: 5423325895830007207, guid: 90d532d03afd15945a30fbc1b42469e1,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5556642364914336129, guid: 90d532d03afd15945a30fbc1b42469e1,
+    - target: {fileID: 5423325895830007207, guid: 90d532d03afd15945a30fbc1b42469e1,
         type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5556642364914336129, guid: 90d532d03afd15945a30fbc1b42469e1,
+    - target: {fileID: 5423325895830007207, guid: 90d532d03afd15945a30fbc1b42469e1,
         type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5556642364914336129, guid: 90d532d03afd15945a30fbc1b42469e1,
+    - target: {fileID: 5423325895830007207, guid: 90d532d03afd15945a30fbc1b42469e1,
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5556642364914336129, guid: 90d532d03afd15945a30fbc1b42469e1,
+    - target: {fileID: 5423325895830007207, guid: 90d532d03afd15945a30fbc1b42469e1,
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5556642364914336129, guid: 90d532d03afd15945a30fbc1b42469e1,
+    - target: {fileID: 5423325895830007207, guid: 90d532d03afd15945a30fbc1b42469e1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
-    - target: {fileID: 5556642364914336129, guid: 90d532d03afd15945a30fbc1b42469e1,
+    - target: {fileID: 5423325895830007207, guid: 90d532d03afd15945a30fbc1b42469e1,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5556642364914336129, guid: 90d532d03afd15945a30fbc1b42469e1,
+    - target: {fileID: 5423325895830007207, guid: 90d532d03afd15945a30fbc1b42469e1,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5556642364914336129, guid: 90d532d03afd15945a30fbc1b42469e1,
+    - target: {fileID: 5423325895830007207, guid: 90d532d03afd15945a30fbc1b42469e1,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0

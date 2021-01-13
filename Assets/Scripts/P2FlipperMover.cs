@@ -107,7 +107,7 @@ public class P2FlipperMover : MonoBehaviour
             myHingeJoint.motor = motor2D;
             if (!hasPlayed)
             {
-                soundManager.PlaySound("flipper");
+                SoundManager.PlaySound("flipper");
                 hasPlayed = true;
             }
 

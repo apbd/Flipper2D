@@ -10,19 +10,19 @@ public class BallGravity : MonoBehaviour {
     public Transform ballTransform;
 
     public float ballSpeed = 1.0f;
-    public bool soundHasPlayer = false;
+    public bool soundHasPlayed = false;
     public static bool ballFreeze;
     public float gravityPowerup;
 
 
     List<int> throwOptions = new List<int> { 10, -10, 5, -5, 2, -2, 8, -8, 4, -4 };      // Options for which side ball is thrown (so it doesnt get thrown at 90 degrees to the wall)
-    private int horizontalThrow;
-    private float verticalThrow;
+    private int _horizontalThrow;
+    private float _verticalThrow;
 
     public TrailRenderer whiteBallTrail, blackBallTrail;
 
     // special ball 
-    private GameObject ball;
+    private GameObject _ball;
     public bool lastSpecialBall = false;
 
     
@@ -36,8 +36,8 @@ public class BallGravity : MonoBehaviour {
       
         blackBallTrail = this.transform.Find("trails/black_ball_trail").GetComponent<TrailRenderer>();
 
-        ball = this.gameObject;
-        if (ball.name.Contains("SpecialBall"))
+        _ball = this.gameObject;
+        if (_ball.name.Contains("SpecialBall"))
         {
             StartCoroutine(BallReset());
         }
@@ -45,7 +45,7 @@ public class BallGravity : MonoBehaviour {
 
     void FixedUpdate()
     {
-        horizontalThrow = throwOptions[Random.Range(0, 7)];  // horizontal throw every round
+        _horizontalThrow = throwOptions[Random.Range(0, 7)];  // horizontal throw every round
         ballRigidbody.velocity *= ballSpeed;
 
         if (ballFreeze == true)
@@ -60,18 +60,18 @@ public class BallGravity : MonoBehaviour {
 
     void Awake()
     {
-        verticalThrow = Random.Range(-10.0f, 5.0f); // vertical throw at match start
+        _verticalThrow = Random.Range(-10.0f, 5.0f); // vertical throw at match start
     }
 
     void OnTriggerStay2D(Collider2D other)
     {
-        
-        if (other.gameObject.name == "ylä")
+        // Change gravity based on which zone the ball is in
+        if (other.gameObject.name == "UpperZone")
         {
             ballRigidbody.gravityScale = -1.0f  * gravityPowerup;
         }
 
-        if (other.gameObject.name == "ala")
+        if (other.gameObject.name == "LowerZone")
         {
             ballRigidbody.gravityScale = 1.0f * gravityPowerup;
         }
@@ -79,17 +79,16 @@ public class BallGravity : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (!soundHasPlayer)
+        if (!soundHasPlayed)
         {
-            soundManager.PlaySound("ball");
-            soundHasPlayer = true;
+            SoundManager.PlaySound("ball");
+            soundHasPlayed = true;
         }
     }
 
     void OnCollisionExit2D(Collision2D other)
     {
-        soundHasPlayer = false;
-
+        soundHasPlayed = false;
     }
 
     //RESPAWNIN
@@ -99,14 +98,14 @@ public class BallGravity : MonoBehaviour {
         {
             //which side continues
 
-            if (other.gameObject.name == "UpperRespawn")
+            if (other.gameObject.name == "UpperGoal")
             {
-                verticalThrow = 3.0f;
+                _verticalThrow = 3.0f;
             }
 
-            if (other.gameObject.name == "LowerRespawn")
+            if (other.gameObject.name == "LowerGoal")
             {
-                verticalThrow = -3.0f;
+                _verticalThrow = -3.0f;
             }
 
             // if special ball is last, destroy
@@ -117,8 +116,8 @@ public class BallGravity : MonoBehaviour {
             else
             {
                 ballTransform.transform.position = new Vector2(0, 0);
-                other.GetComponent<BallRestarter>().ballSpawntParticles.Play();
-                //reset ball after 0.3f because trails
+                other.GetComponent<BallRestarter>().ballSpawntParticleSys.Play();
+                // Reset ball after 0.3f because trails
                 StartCoroutine(BallReset());
             }
         }
@@ -137,7 +136,7 @@ public class BallGravity : MonoBehaviour {
         Debug.Log("Ball restartted.");
         
         //pallotrans.transform.position = new Vector2(0, 0);
-        ballRigidbody.velocity = new Vector2(horizontalThrow, verticalThrow);
+        ballRigidbody.velocity = new Vector2(_horizontalThrow, _verticalThrow);
         //blacktrail.emitting = true;   //ei toimi dunno
     }
 

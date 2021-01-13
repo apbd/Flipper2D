@@ -53,7 +53,7 @@ public class CPU2 : MonoBehaviour
         {
             if (!hasPlayed)
             {
-                soundManager.PlaySound("flipper");
+                SoundManager.PlaySound("flipper");
                 hasPlayed = true;
             }
             
