@@ -13,8 +13,8 @@ Whoever gets more balls past the opponents flippers wins.
 - Powerups 
 
 
-### Features to be added: <br>
-- Online multiplayer, <br>
-- Profiles,  <br>
-- Better graphics,  <br>
-- More arenas, powerups and settings<br>
+### Features to be added: 
+- Online multiplayer
+- Profiles
+- Better graphics
+- More arenas, powerups and settings
